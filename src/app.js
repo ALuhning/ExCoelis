@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import './App.cs'
 import { connect } from 'react-redux'
-import appActions from './redux/actions/appActions'
 import {
   loadWeb3,
   loadAccount,
@@ -9,11 +8,15 @@ import {
   isEnlisted,
   hasWings,
   isTE,
-  isJM  
+  isJM,  
+  initiateFileStorage
 } from './redux/interactions/interactions'
 import Navbar from './components/layout/Navbar'
 import Content from './components/layout/Content'
-import { trackerLoadedSelector } from './redux/selectors/selectors'
+import { 
+  trackerLoadedSelector,
+  filestorageLoadedSelector
+ } from './redux/selectors/selectors'
 
 class App extends Component {
   componentWillMount() {
@@ -39,13 +42,15 @@ class App extends Component {
       console.log("JM: " + jm)
       const ownsWings = await hasWings(dispatch, web3, networkId, account)
       console.log("Cdn Wings: " + ownsWings)
+      const filestorage = await initiateFileStorage(dispatch)
+      console.log(filestorage)
   }
   
   render() {
     return (
       <div>
         <Navbar />
-        
+        <Content />
         { this.props.trackerLoaded ? <Content /> : <div className="content"></div>}
         
       </div>
@@ -54,7 +59,8 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    trackerLoaded: trackerLoadedSelector(state)
+    trackerLoaded: trackerLoadedSelector(state),
+    filestorageLoaded: filestorageLoadedSelector(state)
   }
 }
 

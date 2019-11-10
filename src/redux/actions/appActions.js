@@ -11,7 +11,15 @@ import {
     IS_ENLISTED,
     IS_TE,
     IS_JM,
-    HAS_CDN_WINGS
+    HAS_CDN_WINGS,
+    FILESTORAGE_INITIATED,
+    ISSUED_WINGS_LOADED,
+    ALL_SOLDIERS_ENLISTED,
+    ALL_SOLDIERS_DELISTED,
+    ALL_JUMPMASTERS_AUTHORIZED,
+    ALL_TES_IDENTIFIED,
+    ALL_WINGS_ISSUED,
+    ALL_WINGS_REVOKED
 } from '../actionTypes'
 
 const web3Loaded = (connection) => ({
@@ -74,9 +82,49 @@ const isTE = (te) => ({
     payload: te
 })
 
+const filestorageInitiated = (filestorage) => ({
+    type: FILESTORAGE_INITIATED,
+    payload: filestorage
+})
+
 const isJM = (jm) => ({
     type: IS_JM,
     payload: jm
+})
+
+const allIssuedWingsLoaded = (allWings) => ({
+    type: ISSUED_WINGS_LOADED,
+    payload: allWings
+})
+
+const allSoldierEnlistedLoaded = (soldiers) => ({
+    type: ALL_SOLDIERS_ENLISTED,
+    payload: soldiers
+})
+
+const allSoldierDelisted = (soldiers) => ({
+    type: ALL_SOLDIERS_DELISTED,
+    payload: soldiers
+})
+
+const allJumpMasterAuthorized = (jumpmasters) => ({
+    type: ALL_JUMPMASTERS_AUTHORIZED,
+    payload: jumpmasters
+})
+
+const allTEIdentified = (tes) => ({
+    type: ALL_TES_IDENTIFIED,
+    payload: tes
+})
+
+const allWingsIssued = (wings) => ({
+    type: ALL_WINGS_ISSUED,
+    payload: wings
+})
+
+const allWingsRevoked = (wings) => ({
+    type: ALL_WINGS_REVOKED,
+    payload: wings
 })
 
 const appActions = {
@@ -92,7 +140,15 @@ const appActions = {
     issueWings,
     hasCdnWings,
     isTE,
-    isJM
+    isJM,
+    filestorageInitiated,
+    allIssuedWingsLoaded,
+    allSoldierEnlistedLoaded,
+    allSoldierDelisted,
+    allJumpMasterAuthorized,
+    allTEIdentified,
+    allWingsIssued,
+    allWingsRevoked
 }
 
 export default appActions
