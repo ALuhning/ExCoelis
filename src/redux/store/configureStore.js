@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import { createLogger } from 'redux-logger'
 import promise from 'redux-promise'
-import rootReducer from './reducers'
+import rootReducer from '../reducers'
 
 const loggerMiddleware = createLogger()
 const middleware = [promise]
